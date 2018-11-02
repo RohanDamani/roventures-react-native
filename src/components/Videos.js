@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { styles } from '../stylesheet';
 import Swipe from './Swipe';
 
@@ -18,7 +18,7 @@ class Videos extends React.Component {
       text: 'Seychelles',
       uri:
         'https://s3-us-west-1.amazonaws.com/roventures-videos-hls/Seychelles/seychelles-hls-2M.m3u8',
-      image: '"http://d1qnv9b0izl3m2.cloudfront.net/Seychelles/G0530431.jpg"',
+      image: '"http://photos.roventures.tv/Seychelles/G0530431.jpg"',
       latitude: 4.6796,
       longitude: 55.492,
     },
@@ -27,7 +27,7 @@ class Videos extends React.Component {
       text: 'Dubai',
       uri:
         'https://s3-us-west-1.amazonaws.com/roventures-videos-hls/Dubai/Dubai.m3u8',
-      image: 'http://d1qnv9b0izl3m2.cloudfront.net/Dubai/IMG_2009.jpg',
+      image: 'http://photos.roventures.tv/Dubai/IMG_2009.jpg',
       latitude: 25.2048,
       longitude: 55.4513,
     },
