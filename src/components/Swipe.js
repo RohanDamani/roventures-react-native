@@ -4,6 +4,8 @@ import { styles, SCREEN_WIDTH } from '../stylesheet';
 import { Card, Icon } from 'react-native-elements';
 import VideoPlayer from './VideoPlayer';
 import { MapView } from 'expo';
+import VideoCard from './VideoCard';
+import PhotoCard from './PhotoCard';
 
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 250;
@@ -34,7 +36,6 @@ class Swipe extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log(`Deck:34 (componentWillUpdate) - , nextState:`, nextState);
     if (nextState.index < 0) {
       this.setState({ index: this.props.data.length - 1 });
     }
@@ -97,62 +98,6 @@ class Swipe extends Component {
     };
   }
 
-  renderVideo(item, i) {
-    return (
-      <Card
-        title={item.text}
-        containerStyle={{ height: 605, padding: 8 }}
-      >
-        {item.latitude &&
-          item.longitude && <Text>Published: August 2018</Text>}
-        <VideoPlayer item={item} activeIndex={this.state.index} itemIndex={i} />
-        {!item.latitude &&
-          !item.longitude && (
-            <View>
-              <Icon name="hand-o-left" type="font-awesome" />
-              <Text>Swipe</Text>
-              <Icon name="hand-o-right" type="font-awesome" />
-            </View>
-          )}
-        {item.latitude &&
-          item.longitude && (
-            <MapView
-              style={{ alignSelf: 'stretch', height: 220 }}
-              initialRegion={{
-                latitude: item.latitude,
-                longitude: item.longitude,
-                latitudeDelta: 20,
-                longitudeDelta: 20,
-              }}
-              scrollEnabled={false}
-            >
-              <MapView.Marker
-                coordinate={{
-                  latitude: item.latitude,
-                  longitude: item.longitude,
-                }}
-                title={item.label}
-              />
-            </MapView>
-          )}
-      </Card>
-    );
-  }
-
-  renderPhoto(item) {
-    return (
-      <Card
-        title={item.text}
-        image={{ uri: item.uri }}
-        imageProps={{ resizeMode: 'contain' }}
-        imageStyle={{ height: 330 }}
-        containerStyle={{ height: 450 }}
-      >
-        <Text>{item.id}</Text>
-      </Card>
-    );
-  }
-
   render() {
     return this.props.data
       .map((item, i) => {
@@ -163,16 +108,16 @@ class Swipe extends Component {
               style={[this.getCardStyle(), styles.cardPosition, { zIndex: 99 }]}
               {...this.state.panResponder.panHandlers}
             >
-              {this.props.type === 'video' && this.renderVideo(item, i)}
-              {this.props.type === 'photo' && this.renderPhoto(item)}
+              {this.props.type === 'video' && <VideoCard item={item} i={i} />}
+              {this.props.type === 'photo' && <PhotoCard item={item} />}
             </Animated.View>
           );
         }
         if (i === this.state.nextCard) {
           return (
             <Animated.View key={item.id} style={styles.nextCardPosition}>
-              {this.props.type === 'video' && this.renderVideo(item)}
-              {this.props.type === 'photo' && this.renderPhoto(item)}
+              {this.props.type === 'video' && <VideoCard item={item} i={i} />}
+              {this.props.type === 'photo' && <PhotoCard item={item} />}
             </Animated.View>
           );
         }
