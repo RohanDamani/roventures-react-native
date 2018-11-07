@@ -32,28 +32,28 @@ class Swipe extends Component {
       },
     });
 
-    this.state = { panResponder, position, index: 0, nextCard: 1 };
+    this.state = { panResponder, position, activeIndex: 0, nextCard: 1 };
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextState.index < 0) {
-      this.setState({ index: this.props.data.length - 1 });
+    if (nextState.activeIndex < 0) {
+      this.setState({ activeIndex: this.props.data.length - 1 });
     }
-    if (nextState.index === this.props.data.length) {
-      this.setState({ index: 0 });
+    if (nextState.activeIndex === this.props.data.length) {
+      this.setState({ activeIndex: 0 });
     }
   }
 
   setNextCard(x) {
-    const { index, nextCard } = this.state;
+    const { activeIndex, nextCard } = this.state;
     if (x >= 0) {
-      if (nextCard !== index + 1) {
-        const next = this.state.index + 1;
+      if (nextCard !== activeIndex + 1) {
+        const next = this.state.activeIndex + 1;
         this.setState({ nextCard: next === this.props.data.length ? 0 : next });
       }
     } else {
-      if (nextCard !== index - 1) {
-        const prev = this.state.index - 1;
+      if (nextCard !== activeIndex - 1) {
+        const prev = this.state.activeIndex - 1;
 
         this.setState({
           nextCard: prev === -1 ? this.props.data.length - 1 : prev,
@@ -72,11 +72,11 @@ class Swipe extends Component {
 
   onSwipeComplete(direction) {
     const { onSwipeRight, onSwipeLeft, data } = this.props;
-    const item = data[this.state.index];
+    const item = data[this.state.activeIndex];
     this.state.position.setValue({ x: 0, y: 0 });
     direction === 'right'
-      ? this.setState({ index: this.state.index + 1 })
-      : this.setState({ index: this.state.index - 1 });
+      ? this.setState({ activeIndex: this.state.activeIndex + 1 })
+      : this.setState({ activeIndex: this.state.activeIndex - 1 });
   }
 
   resetPosition() {
@@ -100,23 +100,35 @@ class Swipe extends Component {
 
   render() {
     return this.props.data
-      .map((item, i) => {
-        if (i === this.state.index) {
+      .map((item, itemIndex) => {
+        if (itemIndex === this.state.activeIndex) {
           return (
             <Animated.View
               key={item.id}
               style={[this.getCardStyle(), styles.cardPosition, { zIndex: 99 }]}
               {...this.state.panResponder.panHandlers}
             >
-              {this.props.type === 'video' && <VideoCard item={item} i={i} />}
+              {this.props.type === 'video' && (
+                <VideoCard
+                  item={item}
+                  activeIndex={this.state.activeIndex}
+                  itemIndex={itemIndex}
+                />
+              )}
               {this.props.type === 'photo' && <PhotoCard item={item} />}
             </Animated.View>
           );
         }
-        if (i === this.state.nextCard) {
+        if (itemIndex === this.state.nextCard) {
           return (
             <Animated.View key={item.id} style={styles.nextCardPosition}>
-              {this.props.type === 'video' && <VideoCard item={item} i={i} />}
+              {this.props.type === 'video' && (
+                <VideoCard
+                  item={item}
+                  activeIndex={this.state.activeIndex}
+                  itemIndex={itemIndex}
+                />
+              )}
               {this.props.type === 'photo' && <PhotoCard item={item} />}
             </Animated.View>
           );

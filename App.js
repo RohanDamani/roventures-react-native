@@ -1,11 +1,14 @@
 import React from 'react';
-import { createStore } from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './src/reducers/index';
 import Main from './src/Main';
+import thunkMiddleware from "redux-thunk";
 
-const store = createStore(reducers);
-
+const store = createStore(
+    reducers,
+    applyMiddleware(thunkMiddleware)
+);
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
   module.hot.accept('../reducers', () => {

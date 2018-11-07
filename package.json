@@ -9,6 +9,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "aws-sdk": "^2.350.0",
     "expo": "^30.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
@@ -17,7 +18,8 @@
     "react-native-swipe-up-down": "^1.0.7",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
-    "redux-form": "^7.4.2"
+    "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {}
 }

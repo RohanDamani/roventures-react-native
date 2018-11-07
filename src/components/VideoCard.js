@@ -7,11 +7,11 @@ import { MapView } from 'expo';
 
 class VideoCard extends React.Component {
   render() {
-    const { item, i } = this.props;
+    const { item, itemIndex, activeIndex } = this.props;
     return (
       <Card title={item.text} containerStyle={{ height: 605, padding: 8 }}>
         {item.latitude && item.longitude && <Text>Published: August 2018</Text>}
-        <VideoPlayer item={item} activeIndex={this.state.index} itemIndex={i} />
+        <VideoPlayer item={item} activeIndex={activeIndex} itemIndex={itemIndex} />
         {!item.latitude &&
           !item.longitude && (
             <View>
