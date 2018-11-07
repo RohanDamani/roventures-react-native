@@ -9,8 +9,9 @@ class TopNav extends React.Component {
       photoViewerAlbum,
       updatePhotoViewerAlbum,
       clearAlbumData,
+      bottomNavActiveTab,
     } = this.props;
-    if (photoViewerAlbum) {
+    if (photoViewerAlbum && bottomNavActiveTab === 'photos') {
       return (
         <Header
           centerComponent={{
@@ -26,7 +27,7 @@ class TopNav extends React.Component {
               containerStyle={{ marginTop: 28 }}
               onPress={() => {
                 updatePhotoViewerAlbum('');
-                clearAlbumData;
+                clearAlbumData();
               }}
             />
           }
@@ -57,6 +58,7 @@ class TopNav extends React.Component {
 export default connect(
   state => ({
     photoViewerAlbum: state.photoViewerAlbum,
+    bottomNavActiveTab: state.bottomNavActiveTab,
   }),
   { updatePhotoViewerAlbum, clearAlbumData },
 )(TopNav);

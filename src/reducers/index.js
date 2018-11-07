@@ -14,7 +14,6 @@ const bottomNavActiveTab = (state = 'photos', action) => {
 const photoViewerAlbum = (state = '', action) => {
   switch (action.type) {
     case 'UPDATE_PHOTO_VIEWER_ALBUM':
-      console.log(`index:16 (photoViewerAlbum) - action.album:`, action.album);
       return action.album;
     default:
       return state;
