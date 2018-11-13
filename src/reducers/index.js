@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { getBucketUrl } from '../awsUtil';
 
-const bottomNavActiveTab = (state = 'photos', action) => {
+const bottomNavActiveTab = (state = 'videos', action) => {
   switch (action.type) {
     case 'UPDATE_BOTTOM_NAV_ACTIVE_TAB':
       return action.activeTab;
@@ -25,10 +25,10 @@ const media = (state = { photos: [], videos: [] }, action) => {
     case 'RECEIVE_ALBUM_DATA':
       const bucketUrl = getBucketUrl;
       const photos = [];
-      action.payload.Contents.forEach(photo => {
+      action.payload.Contents.forEach((photo, index) => {
         if (photo.Size > 0) {
           const photoKey = photo.Key;
-          photos.push(bucketUrl + photoKey);
+          photos.push({id: index, uri: `${bucketUrl}${photoKey}`});
         }
       });
       return {

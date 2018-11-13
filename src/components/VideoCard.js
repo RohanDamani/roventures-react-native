@@ -9,21 +9,40 @@ class VideoCard extends React.Component {
   render() {
     const { item, itemIndex, activeIndex } = this.props;
     return (
-      <Card title={item.text} containerStyle={{ height: 605, padding: 8 }}>
-        {item.latitude && item.longitude && <Text>Published: August 2018</Text>}
-        <VideoPlayer item={item} activeIndex={activeIndex} itemIndex={itemIndex} />
+      <Card
+        title={item.text}
+        containerStyle={{ height: 605, padding: 8 }}
+        dividerStyle={{ display: 'none' }}
+        titleStyle={{ fontSize: 30, marginTop: 20, marginBottom: 20 }}
+      >
+        <VideoPlayer
+          item={item}
+          activeIndex={activeIndex}
+          itemIndex={itemIndex}
+        />
         {!item.latitude &&
           !item.longitude && (
-            <View>
-              <Icon name="hand-o-left" type="font-awesome" />
-              <Text>Swipe</Text>
-              <Icon name="hand-o-right" type="font-awesome" />
+            <View
+              style={{
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <View style={{ marginTop: 40, marginRight: 50 }}>
+                <Icon name="hand-o-left" type="font-awesome" />
+              </View>
+              <View style={{ marginTop: 20 }}>
+                <Text>Swipe</Text>
+              </View>
+              <View style={{ marginTop: 20, marginLeft: 50 }}>
+                <Icon name="hand-o-right" type="font-awesome" />
+              </View>
             </View>
           )}
         {item.latitude &&
           item.longitude && (
             <MapView
-              style={{ alignSelf: 'stretch', height: 220 }}
+              style={{ alignSelf: 'stretch', height: 150, marginTop: 20 }}
               initialRegion={{
                 latitude: item.latitude,
                 longitude: item.longitude,
