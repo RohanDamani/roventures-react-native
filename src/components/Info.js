@@ -8,22 +8,33 @@ class Info extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <View><Text>Captain Ro was last seen around here ~</Text></View>
+        <View
+          style={{
+            height: 65,
+            backgroundColor: '#fff',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderBottomWidth: 1,
+            borderBottomColor: '#ddd',
+          }}
+        >
+          <Text style={{ fontSize: 20 }}>Last Seen Around Here</Text>
+        </View>
         <MapView
           style={{ flex: 1 }}
           initialRegion={{
-              latitude: 33.9803,
-              longitude: -118.4517,
+            latitude: 33.9803,
+            longitude: -118.4517,
             latitudeDelta: 10,
             longitudeDelta: 10,
           }}
         >
-            <MapView.Marker
-                coordinate={{
-                    latitude: 33.9803,
-                    longitude: -118.4517,
-                }}
-            />
+          <MapView.Marker
+            coordinate={{
+              latitude: 33.9803,
+              longitude: -118.4517,
+            }}
+          />
         </MapView>
       </View>
     );

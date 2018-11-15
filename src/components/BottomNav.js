@@ -29,7 +29,7 @@ class BottomNav extends Component {
       key: 'info',
       icon: 'anchor',
       label: 'Info',
-      barColor: '#0ed9e0',
+      barColor: 'lightblue',
       pressColor: 'rgba(255, 255, 255, 0.16)',
       labelColor: '#000',
     },

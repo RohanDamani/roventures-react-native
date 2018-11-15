@@ -14,7 +14,7 @@ class PhotoCard extends React.Component {
         image={{ uri: item.uri }}
         imageProps={{ resizeMode: 'contain' }}
         imageStyle={{
-          height: 330,
+          height: 345,
           backgroundColor: '#000',
         }}
         containerStyle={{
@@ -36,14 +36,15 @@ class PhotoCard extends React.Component {
         }}
       >
         <Button
-          title="View Album"
+          title="VIEW ALBUM"
           onPress={() => updatePhotoViewerAlbum(item.text)}
-          containerViewStyle={{ marginLeft: 0, marginRight: 0, marginTop: 12 }}
+          containerViewStyle={{ marginLeft: 0, marginRight: 0, marginTop: 10 }}
+          textStyle={{fontSize: 18}}
         />
         <View
           style={{
             width: '100%',
-            marginTop: 30,
+            marginTop: 25,
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}
@@ -56,7 +57,7 @@ class PhotoCard extends React.Component {
               marginLeft: 10,
             }}
           >
-            <Icon name="hand-o-left" type="font-awesome" />
+            <Icon name="chevron-left" type="font-awesome" color="#777" />
           </View>
           <View
             style={{
@@ -66,7 +67,7 @@ class PhotoCard extends React.Component {
               marginRight: 10,
             }}
           >
-            <Icon name="hand-o-right" type="font-awesome" />
+            <Icon name="chevron-right" type="font-awesome" color="#777" />
           </View>
         </View>
       </Card>

@@ -39,34 +39,32 @@ class VideoCard extends React.Component {
           !item.longitude && (
             <View
               style={{
-                flexDirection: 'column',
-                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                backgroundColor: '#eee',
+                borderRadius: 25,
+                marginTop: 60,
+                marginRight: 30,
+                marginLeft: 30,
+                padding: 8,
               }}
             >
               <View
                 style={{
-                  marginTop: 40,
                   marginRight: 80,
-                  backgroundColor: '#eee',
-                  borderRadius: 25,
-                  padding: 8,
                 }}
               >
-                <Icon name="hand-o-left" type="font-awesome" />
+                <Icon name="chevron-left" type="font-awesome" color="#777" />
               </View>
-              <View style={{ marginTop: 12 }}>
+              <View>
                 <Text style={{ fontSize: 18 }}>Swipe</Text>
               </View>
               <View
                 style={{
-                  marginTop: 12,
                   marginLeft: 80,
-                  backgroundColor: '#eee',
-                  borderRadius: 25,
-                  padding: 8,
                 }}
               >
-                <Icon name="hand-o-right" type="font-awesome" />
+                <Icon name="chevron-right" type="font-awesome" color="#777" />
               </View>
             </View>
           )}
