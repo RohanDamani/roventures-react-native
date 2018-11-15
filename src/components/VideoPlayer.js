@@ -26,7 +26,7 @@ class VideoPlayer extends React.Component {
         useNativeControls={true}
         resizeMode="contain"
         shouldPlay={activeIndex === itemIndex}
-        isLooping
+        // isLooping
         // usePoster
         onFullscreenUpdate={e => {
           this.changeScreenOrientation(e);

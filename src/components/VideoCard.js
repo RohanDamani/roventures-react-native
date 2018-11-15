@@ -10,7 +10,7 @@ class VideoCard extends React.Component {
     const { item, itemIndex, activeIndex } = this.props;
     return (
       <Card
-        title={item.text}
+        title={item.welcome ? " " : item.text}
         containerStyle={{
           height: 605,
           padding: 0,
@@ -35,8 +35,7 @@ class VideoCard extends React.Component {
           activeIndex={activeIndex}
           itemIndex={itemIndex}
         />
-        {!item.latitude &&
-          !item.longitude && (
+        {item.welcome && (
             <View
               style={{
                 flexDirection: 'row',
@@ -68,8 +67,7 @@ class VideoCard extends React.Component {
               </View>
             </View>
           )}
-        {item.latitude &&
-          item.longitude && (
+        {!item.welcome && (
             <MapView
               style={{
                 alignSelf: 'stretch',

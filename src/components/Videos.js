@@ -11,6 +11,7 @@ class Videos extends React.Component {
       text: 'Welcome',
       uri:
         'https://s3-us-west-1.amazonaws.com/roventures-videos-hls/Welcome/welcome.m3u8',
+      welcome: true,
     },
 
     {
