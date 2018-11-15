@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "roventures",
-    "description": "This project is really great.",
+    "name": "Roventures",
+    "description": "View photos, videos, and more from Roventures.",
     "slug": "roventures",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/roventures_icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,7 +21,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.Roventures.Roventures",
+
+    },
+    "android": {
+      "bundleIdentifier": "com.Roventures.Roventures"
+    },
   }
 }
