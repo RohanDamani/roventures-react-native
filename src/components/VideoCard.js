@@ -11,9 +11,24 @@ class VideoCard extends React.Component {
     return (
       <Card
         title={item.text}
-        containerStyle={{ height: 605, padding: 8 }}
+        containerStyle={{
+          height: 605,
+          padding: 0,
+          shadowColor: '#333',
+          shadowOffset: { width: 2, height: 2 },
+          shadowOpacity: 0.25,
+          shadowRadius: 5,
+          borderWidth: 0,
+        }}
         dividerStyle={{ display: 'none' }}
-        titleStyle={{ fontSize: 30, marginTop: 20, marginBottom: 20 }}
+        titleStyle={{
+          fontSize: 30,
+          marginTop: 25,
+          marginBottom: 20,
+          textAlign: 'left',
+          paddingLeft: 14,
+          fontFamily: 'Georgia',
+        }}
       >
         <VideoPlayer
           item={item}
@@ -28,13 +43,29 @@ class VideoCard extends React.Component {
                 alignItems: 'center',
               }}
             >
-              <View style={{ marginTop: 40, marginRight: 50 }}>
+              <View
+                style={{
+                  marginTop: 40,
+                  marginRight: 80,
+                  backgroundColor: '#eee',
+                  borderRadius: 25,
+                  padding: 8,
+                }}
+              >
                 <Icon name="hand-o-left" type="font-awesome" />
               </View>
-              <View style={{ marginTop: 20 }}>
-                <Text>Swipe</Text>
+              <View style={{ marginTop: 12 }}>
+                <Text style={{ fontSize: 18 }}>Swipe</Text>
               </View>
-              <View style={{ marginTop: 20, marginLeft: 50 }}>
+              <View
+                style={{
+                  marginTop: 12,
+                  marginLeft: 80,
+                  backgroundColor: '#eee',
+                  borderRadius: 25,
+                  padding: 8,
+                }}
+              >
                 <Icon name="hand-o-right" type="font-awesome" />
               </View>
             </View>
@@ -42,7 +73,13 @@ class VideoCard extends React.Component {
         {item.latitude &&
           item.longitude && (
             <MapView
-              style={{ alignSelf: 'stretch', height: 150, marginTop: 20 }}
+              style={{
+                alignSelf: 'stretch',
+                height: 150,
+                marginTop: 20,
+                borderWidth: 1,
+                borderColor: '#eee',
+              }}
               initialRegion={{
                 latitude: item.latitude,
                 longitude: item.longitude,
