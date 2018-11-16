@@ -71,7 +71,7 @@ class PhotoCard extends React.Component {
               name="chevron-left"
               type="font-awesome"
               color="#777"
-              size={isSmallScreen() ? 15 : null}
+              size={isSmallScreen() ? 15 : 18}
             />
           </View>
           <View
@@ -86,7 +86,7 @@ class PhotoCard extends React.Component {
               name="chevron-right"
               type="font-awesome"
               color="#777"
-              size={isSmallScreen() ? 15 : null}
+              size={isSmallScreen() ? 15 : 18}
             />
           </View>
         </View>

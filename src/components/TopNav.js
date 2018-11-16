@@ -28,7 +28,7 @@ class TopNav extends React.Component {
               color="aqua"
               type="ionicon"
               size={35}
-              containerStyle={{ marginTop: 28, width: 28 }}
+              containerStyle={{ marginTop: isSmallScreen() ? 10 : 24, width: 28 }}
               onPress={() => {
                 updatePhotoViewerAlbum('');
                 clearAlbumData();
