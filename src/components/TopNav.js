@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Header, Icon } from 'react-native-elements';
 import { updatePhotoViewerAlbum, clearAlbumData } from '../actions';
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
+import { isSmallScreen } from '../utils/isSmallScreen';
 
 class TopNav extends React.Component {
   render() {
@@ -36,7 +37,7 @@ class TopNav extends React.Component {
           ) : null
         }
         outerContainerStyles={{
-          height: 90,
+          height: isSmallScreen() ? 68 : 80,
           backgroundColor: '#333',
           borderBottomColor: '#777',
           paddingBottom: 7,

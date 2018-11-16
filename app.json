@@ -10,9 +10,9 @@
     "orientation": "portrait",
     "icon": "./assets/roventures_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/roventures_splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,9 +24,6 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.Roventures.Roventures",
 
-    },
-    "android": {
-      "bundleIdentifier": "com.Roventures.Roventures"
-    },
+    }
   }
 }

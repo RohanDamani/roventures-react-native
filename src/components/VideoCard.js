@@ -3,16 +3,16 @@ import { Card, Icon } from 'react-native-elements';
 import { Text, View } from 'react-native';
 import VideoPlayer from './VideoPlayer';
 import { MapView } from 'expo';
-// import { styles } from '../stylesheet';
+import { isSmallScreen } from '../utils/isSmallScreen';
 
 class VideoCard extends React.Component {
   render() {
     const { item, itemIndex, activeIndex } = this.props;
     return (
       <Card
-        title={item.welcome ? " " : item.text}
+        title={item.text}
         containerStyle={{
-          height: 605,
+          height: isSmallScreen() ? 400 : 605,
           padding: 0,
           shadowColor: '#333',
           shadowOffset: { width: 2, height: 2 },
@@ -25,7 +25,7 @@ class VideoCard extends React.Component {
           fontSize: 30,
           marginTop: 25,
           marginBottom: 20,
-          textAlign: 'left',
+          textAlign: item.welcome ? 'center' : 'left',
           paddingLeft: 14,
           fontFamily: 'Georgia',
         }}
@@ -36,63 +36,63 @@ class VideoCard extends React.Component {
           itemIndex={itemIndex}
         />
         {item.welcome && (
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              backgroundColor: '#eee',
+              borderRadius: 25,
+              marginTop: isSmallScreen() ? 20 : 60,
+              marginRight: 30,
+              marginLeft: 30,
+              padding: 8,
+            }}
+          >
             <View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                backgroundColor: '#eee',
-                borderRadius: 25,
-                marginTop: 60,
-                marginRight: 30,
-                marginLeft: 30,
-                padding: 8,
+                marginRight: 80,
               }}
             >
-              <View
-                style={{
-                  marginRight: 80,
-                }}
-              >
-                <Icon name="chevron-left" type="font-awesome" color="#777" />
-              </View>
-              <View>
-                <Text style={{ fontSize: 18 }}>Swipe</Text>
-              </View>
-              <View
-                style={{
-                  marginLeft: 80,
-                }}
-              >
-                <Icon name="chevron-right" type="font-awesome" color="#777" />
-              </View>
+              <Icon name="chevron-left" type="font-awesome" color="#777" />
             </View>
-          )}
-        {!item.welcome && (
-            <MapView
+            <View>
+              <Text style={{ fontSize: 18 }}>Swipe</Text>
+            </View>
+            <View
               style={{
-                alignSelf: 'stretch',
-                height: 150,
-                marginTop: 20,
-                borderWidth: 1,
-                borderColor: '#eee',
+                marginLeft: 80,
               }}
-              initialRegion={{
+            >
+              <Icon name="chevron-right" type="font-awesome" color="#777" />
+            </View>
+          </View>
+        )}
+        {!item.welcome && (
+          <MapView
+            style={{
+              alignSelf: 'stretch',
+              height: isSmallScreen() ? 90 : 150,
+              marginTop: isSmallScreen() ? 5 : 20,
+              borderWidth: 1,
+              borderColor: '#eee',
+            }}
+            initialRegion={{
+              latitude: item.latitude,
+              longitude: item.longitude,
+              latitudeDelta: 20,
+              longitudeDelta: 20,
+            }}
+            scrollEnabled={false}
+          >
+            <MapView.Marker
+              coordinate={{
                 latitude: item.latitude,
                 longitude: item.longitude,
-                latitudeDelta: 20,
-                longitudeDelta: 20,
               }}
-              scrollEnabled={false}
-            >
-              <MapView.Marker
-                coordinate={{
-                  latitude: item.latitude,
-                  longitude: item.longitude,
-                }}
-                title={item.label}
-              />
-            </MapView>
-          )}
+              title={item.label}
+            />
+          </MapView>
+        )}
       </Card>
     );
   }

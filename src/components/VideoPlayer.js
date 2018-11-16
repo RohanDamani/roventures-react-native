@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Expo, { Video } from 'expo';
+import { isSmallScreen } from '../utils/isSmallScreen';
 
 class VideoPlayer extends React.Component {
   changeScreenOrientation(e) {
@@ -36,7 +37,7 @@ class VideoPlayer extends React.Component {
         }}
         style={{
           width: '100%',
-          height: 290,
+          height: isSmallScreen() ? 180 : 290,
           // borderWidth: 3,
           // borderColor: '#999',
           // borderRadius: 4,

@@ -5,6 +5,7 @@ import BottomNavigation, {
   FullTab,
 } from 'react-native-material-bottom-navigation';
 import { updateBottomNavActiveTab } from '../actions/index';
+import {isSmallScreen} from "../utils/isSmallScreen";
 import { styles } from '../stylesheet';
 
 class BottomNav extends Component {
@@ -35,7 +36,7 @@ class BottomNav extends Component {
     },
   ];
 
-  ViewPropsStyle = { height: 87, paddingBottom: 26 };
+  ViewPropsStyle = { height: isSmallScreen() ? 60 : 78, paddingBottom: isSmallScreen() ? 5 : 18 };
 
   renderIcon = icon => ({ isActive }) => (
     <Icon name={icon} type="font-awesome" color="#517fa4" />

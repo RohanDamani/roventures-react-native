@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Button, Card, Icon } from 'react-native-elements';
 import { updatePhotoViewerAlbum } from '../actions';
 import { View } from 'react-native';
+import { isSmallScreen } from '../utils/isSmallScreen';
+
 // import { styles } from '../stylesheet';
 
 class PhotoCard extends React.Component {
@@ -14,37 +16,45 @@ class PhotoCard extends React.Component {
         image={{ uri: item.uri }}
         imageProps={{ resizeMode: 'contain' }}
         imageStyle={{
-          height: 345,
+          height: isSmallScreen() ? 280 : 345,
           backgroundColor: '#000',
         }}
         containerStyle={{
-          height: 605,
+          height: isSmallScreen() ? 400 : 605,
           padding: 0,
           shadowColor: '#333',
           shadowOffset: { width: 2, height: 2 },
-          shadowOpacity: 0.25,
+          shadowOpacity: 0.3,
           shadowRadius: 5,
           borderWidth: 0,
         }}
-        titleStyle={{
-          fontSize: 30,
-          marginTop: 25,
-          marginBottom: 20,
-          textAlign: 'left',
-          paddingLeft: 14,
-          fontFamily: 'Georgia',
-        }}
+        titleStyle={
+          isSmallScreen()
+            ? { display: 'none' }
+            : {
+                fontSize: 30,
+                marginTop: 25,
+                marginBottom: 20,
+                textAlign: 'left',
+                paddingLeft: 14,
+                fontFamily: 'Georgia',
+              }
+        }
       >
         <Button
-          title="VIEW ALBUM"
+          title={isSmallScreen() ? `VIEW ${item.text}` : 'VIEW ALBUM'}
           onPress={() => updatePhotoViewerAlbum(item.text)}
-          containerViewStyle={{ marginLeft: 0, marginRight: 0, marginTop: 10 }}
-          textStyle={{fontSize: 18}}
+          containerViewStyle={{
+            marginLeft: 0,
+            marginRight: 0,
+            marginTop: isSmallScreen() ? 4 : 10,
+          }}
+          textStyle={{ fontSize: 18 }}
         />
         <View
           style={{
             width: '100%',
-            marginTop: 25,
+            marginTop: isSmallScreen() ? 15 : 25,
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}
@@ -53,21 +63,31 @@ class PhotoCard extends React.Component {
             style={{
               backgroundColor: '#eee',
               borderRadius: 25,
-              padding: 8,
+              padding: isSmallScreen() ? 4 : 8,
               marginLeft: 10,
             }}
           >
-            <Icon name="chevron-left" type="font-awesome" color="#777" />
+            <Icon
+              name="chevron-left"
+              type="font-awesome"
+              color="#777"
+              size={isSmallScreen() ? 15 : null}
+            />
           </View>
           <View
             style={{
               backgroundColor: '#eee',
               borderRadius: 25,
-              padding: 8,
+              padding: isSmallScreen() ? 4 : 8,
               marginRight: 10,
             }}
           >
-            <Icon name="chevron-right" type="font-awesome" color="#777" />
+            <Icon
+              name="chevron-right"
+              type="font-awesome"
+              color="#777"
+              size={isSmallScreen() ? 15 : null}
+            />
           </View>
         </View>
       </Card>
