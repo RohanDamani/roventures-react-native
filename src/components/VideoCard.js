@@ -84,8 +84,7 @@ class VideoCard extends React.Component {
           <MapView
             style={{
               alignSelf: 'stretch',
-              height: isSmallScreen() ? 90 : 150,
-              marginTop: isSmallScreen() ? 5 : 20,
+              height: isSmallScreen() ? 140 : 235,
               borderWidth: 1,
               borderColor: '#eee',
             }}
