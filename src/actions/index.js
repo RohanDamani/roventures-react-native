@@ -1,6 +1,6 @@
 import { authenticatePhotoBucket } from '../awsUtil';
 
-const bucket = authenticatePhotoBucket
+const bucket = authenticatePhotoBucket;
 
 export const updateBottomNavActiveTab = activeTab => ({
   type: 'UPDATE_BOTTOM_NAV_ACTIVE_TAB',
@@ -13,7 +13,7 @@ export const updatePhotoViewerAlbum = album => ({
 });
 
 export const clearAlbumData = () => ({
-    type: 'CLEAR_ALBUM_DATA',
+  type: 'CLEAR_ALBUM_DATA',
 });
 
 const receiveAlbumData = data => ({
@@ -21,7 +21,12 @@ const receiveAlbumData = data => ({
   payload: data,
 });
 
-export const fetchAlbum = (album) => {
+export const toggleVideoLoading = value => ({
+  type: 'TOGGLE_VIDEO_LOADING',
+  value,
+});
+
+export const fetchAlbum = album => {
   return dispatch => {
     // AWS-sdk for s3 object
     bucket.listObjects({ Prefix: album }, (err, data) => {

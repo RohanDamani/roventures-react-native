@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Expo, { Video } from 'expo';
 import { isSmallScreen } from '../utils/isSmallScreen';
+import { toggleVideoLoading } from '../actions';
 
 class VideoPlayer extends React.Component {
   changeScreenOrientation(e) {
@@ -14,6 +15,13 @@ class VideoPlayer extends React.Component {
     }
   }
 
+  toggleVideoLoad(status) {
+    const { toggleVideoLoading } = this.props;
+    if (status.shouldPlay && status.isLoaded) {
+      toggleVideoLoading(true);
+    }
+  }
+
   render() {
     const { item, activeIndex, itemIndex } = this.props;
     return (
@@ -23,15 +31,16 @@ class VideoPlayer extends React.Component {
         }}
         rate={1.0}
         volume={1.0}
-        // isMuted={false}
+        // isMuted={true}
         useNativeControls={true}
         resizeMode="contain"
         shouldPlay={activeIndex === itemIndex}
         // isLooping
         // usePoster
-        onFullscreenUpdate={e => {
-          this.changeScreenOrientation(e);
+        onFullscreenUpdate={status => {
+          this.changeScreenOrientation(status);
         }}
+        onLoad={e => this.toggleVideoLoad(e)}
         posterSource={{
           uri: item.image,
         }}
@@ -48,6 +57,9 @@ class VideoPlayer extends React.Component {
   }
 }
 
-export default connect(state => ({
-  bottomNavActiveTab: state.bottomNavActiveTab,
-}))(VideoPlayer);
+export default connect(
+  state => ({
+    bottomNavActiveTab: state.bottomNavActiveTab,
+  }),
+  { toggleVideoLoading },
+)(VideoPlayer);

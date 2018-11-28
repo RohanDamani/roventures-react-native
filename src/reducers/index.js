@@ -11,6 +11,15 @@ const bottomNavActiveTab = (state = 'videos', action) => {
   }
 };
 
+const isVideoLoaded = (state = false, action) => {
+  switch (action.type) {
+    case 'TOGGLE_VIDEO_LOADING':
+      return action.value;
+    default:
+      return state;
+  }
+};
+
 const photoViewerAlbum = (state = '', action) => {
   switch (action.type) {
     case 'UPDATE_PHOTO_VIEWER_ALBUM':
@@ -28,7 +37,7 @@ const media = (state = { photos: [], videos: [] }, action) => {
       action.payload.Contents.forEach((photo, index) => {
         if (photo.Size > 0) {
           const photoKey = photo.Key;
-          photos.push({id: index, uri: `${bucketUrl}${photoKey}`});
+          photos.push({ id: index, uri: `${bucketUrl}${photoKey}` });
         }
       });
       return {
@@ -47,6 +56,7 @@ const media = (state = { photos: [], videos: [] }, action) => {
 
 export default combineReducers({
   bottomNavActiveTab,
+  isVideoLoaded,
   photoViewerAlbum,
   media,
   form: formReducer,

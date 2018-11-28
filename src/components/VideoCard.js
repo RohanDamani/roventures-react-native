@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Card, Icon } from 'react-native-elements';
-import { Text, View } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import VideoPlayer from './VideoPlayer';
 import { MapView } from 'expo';
 import { isSmallScreen } from '../utils/isSmallScreen';
+import { SCREEN_WIDTH } from '../stylesheet';
 
 class VideoCard extends React.Component {
   render() {
-    const { item, itemIndex, activeIndex } = this.props;
+    const { item, itemIndex, activeIndex, isVideoLoaded } = this.props;
     return (
       <Card
         title={item.text}
@@ -35,6 +37,17 @@ class VideoCard extends React.Component {
           activeIndex={activeIndex}
           itemIndex={itemIndex}
         />
+        {!isVideoLoaded && (
+          <View
+            style={{
+              position: 'absolute',
+              right: SCREEN_WIDTH / 2.5,
+              top: isSmallScreen() ? 150 : 200,
+            }}
+          >
+            <ActivityIndicator size="large" />
+          </View>
+        )}
         {item.welcome && (
           <View
             style={{
@@ -98,4 +111,6 @@ class VideoCard extends React.Component {
   }
 }
 
-export default VideoCard;
+export default connect(state => ({
+  isVideoLoaded: state.isVideoLoaded,
+}))(VideoCard);
