@@ -37,7 +37,7 @@ class VideoCard extends React.Component {
           activeIndex={activeIndex}
           itemIndex={itemIndex}
         />
-        {!isVideoLoaded && (
+        {!isVideoLoaded && activeIndex === 0 && (
           <View
             style={{
               position: 'absolute',

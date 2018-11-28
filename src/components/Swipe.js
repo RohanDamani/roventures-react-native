@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { View, Animated, PanResponder, Text } from 'react-native';
+import { Animated, PanResponder } from 'react-native';
 import { styles, SCREEN_WIDTH } from '../stylesheet';
-import { Card, Icon } from 'react-native-elements';
-import VideoPlayer from './VideoPlayer';
-import { MapView } from 'expo';
 import VideoCard from './VideoCard';
 import PhotoCard from './PhotoCard';
 
