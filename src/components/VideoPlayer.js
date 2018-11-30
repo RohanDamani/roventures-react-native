@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Expo, { Video } from 'expo';
-import { isSmallScreen } from '../utils/isSmallScreen';
+import { resizeVertical } from '../utils/resize';
 import { toggleVideoLoading } from '../actions';
 
 class VideoPlayer extends React.Component {
@@ -35,23 +35,20 @@ class VideoPlayer extends React.Component {
         useNativeControls={true}
         resizeMode="contain"
         shouldPlay={activeIndex === itemIndex}
-        // isLooping
-        // usePoster
+        onLoad={e => this.toggleVideoLoad(e)}
         onFullscreenUpdate={status => {
           this.changeScreenOrientation(status);
         }}
-        onLoad={e => this.toggleVideoLoad(e)}
-        posterSource={{
-          uri: item.image,
-        }}
         style={{
           width: '100%',
-          height: isSmallScreen() ? 180 : 290,
-          // borderWidth: 3,
-          // borderColor: '#999',
-          // borderRadius: 4,
+          height: resizeVertical(180, 225, 290, 310, 460, 620),
           backgroundColor: '#000',
         }}
+        // isLooping
+        // usePoster
+        // posterSource={{
+        //   uri: item.image,
+        // }}
       />
     );
   }

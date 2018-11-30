@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Card, Icon } from 'react-native-elements';
 import { updatePhotoViewerAlbum } from '../actions';
 import { View } from 'react-native';
-import { isSmallScreen } from '../utils/isSmallScreen';
+import { resizeVertical, resize } from '../utils/resize';
 
 // import { styles } from '../stylesheet';
 
@@ -16,11 +16,11 @@ class PhotoCard extends React.Component {
         image={{ uri: item.uri }}
         imageProps={{ resizeMode: 'contain' }}
         imageStyle={{
-          height: isSmallScreen() ? 280 : 345,
+          height: resizeVertical(290, 345, 345, 384, 530, 800),
           backgroundColor: '#000',
         }}
         containerStyle={{
-          height: isSmallScreen() ? 400 : 605,
+          height: resizeVertical(400, 486, 605, 687, 830, 1150),
           padding: 0,
           shadowColor: '#333',
           shadowOffset: { width: 2, height: 2 },
@@ -29,10 +29,10 @@ class PhotoCard extends React.Component {
           borderWidth: 0,
         }}
         titleStyle={
-          isSmallScreen()
+          resize()
             ? { display: 'none' }
             : {
-                fontSize: 30,
+                fontSize: resizeVertical(30, 30, 30, 32, 36, 42),
                 marginTop: 25,
                 marginBottom: 20,
                 textAlign: 'left',
@@ -42,19 +42,19 @@ class PhotoCard extends React.Component {
         }
       >
         <Button
-          title={isSmallScreen() ? `VIEW ${item.text}` : 'VIEW ALBUM'}
+          title={resize() ? `VIEW ${item.text}` : 'VIEW ALBUM'}
           onPress={() => updatePhotoViewerAlbum(item.text)}
           containerViewStyle={{
             marginLeft: 0,
             marginRight: 0,
-            marginTop: isSmallScreen() ? 4 : 10,
+            marginTop: resizeVertical(4, 8, 10, 40, 30, 45),
           }}
           textStyle={{ fontSize: 18 }}
         />
         <View
           style={{
             width: '100%',
-            marginTop: isSmallScreen() ? 15 : 25,
+            marginTop: resizeVertical(14, 22, 25, 60, 40, 70),
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}
@@ -63,7 +63,8 @@ class PhotoCard extends React.Component {
             style={{
               backgroundColor: '#eee',
               borderRadius: 25,
-              padding: isSmallScreen() ? 4 : 8,
+              padding: resizeVertical(4, 8, 8, 12, 12),
+              paddingRight: resizeVertical(6, 11, 11, 15, 15),
               marginLeft: 10,
             }}
           >
@@ -71,14 +72,16 @@ class PhotoCard extends React.Component {
               name="chevron-left"
               type="font-awesome"
               color="#777"
-              size={isSmallScreen() ? 15 : 18}
+              size={resizeVertical(17, 18, 18, 22, 18)}
             />
           </View>
           <View
             style={{
               backgroundColor: '#eee',
               borderRadius: 25,
-              padding: isSmallScreen() ? 4 : 8,
+              padding: resizeVertical(4, 8, 8, 12, 12),
+              paddingLeft: resizeVertical(6, 11, 11, 15, 15),
+
               marginRight: 10,
             }}
           >
@@ -86,7 +89,7 @@ class PhotoCard extends React.Component {
               name="chevron-right"
               type="font-awesome"
               color="#777"
-              size={isSmallScreen() ? 15 : 18}
+              size={resizeVertical(17, 18, 18, 22, 18)}
             />
           </View>
         </View>

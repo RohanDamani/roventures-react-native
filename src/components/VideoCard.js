@@ -4,7 +4,7 @@ import { Card, Icon } from 'react-native-elements';
 import { Text, View, ActivityIndicator } from 'react-native';
 import VideoPlayer from './VideoPlayer';
 import { MapView } from 'expo';
-import { isSmallScreen } from '../utils/isSmallScreen';
+import { resizeVertical } from '../utils/resize';
 import { SCREEN_WIDTH } from '../stylesheet';
 
 class VideoCard extends React.Component {
@@ -14,7 +14,7 @@ class VideoCard extends React.Component {
       <Card
         title={item.text}
         containerStyle={{
-          height: isSmallScreen() ? 400 : 605,
+          height: resizeVertical(400, 491, 605, 687, 830, 1150),
           padding: 0,
           shadowColor: '#333',
           shadowOffset: { width: 2, height: 2 },
@@ -24,7 +24,7 @@ class VideoCard extends React.Component {
         }}
         dividerStyle={{ display: 'none' }}
         titleStyle={{
-          fontSize: 30,
+          fontSize: resizeVertical(30, 34, 30, 36, 38, 46),
           marginTop: 25,
           marginBottom: 20,
           textAlign: item.welcome ? 'center' : 'left',
@@ -37,17 +37,18 @@ class VideoCard extends React.Component {
           activeIndex={activeIndex}
           itemIndex={itemIndex}
         />
-        {!isVideoLoaded && activeIndex === 0 && (
-          <View
-            style={{
-              position: 'absolute',
-              right: SCREEN_WIDTH / 2.5,
-              top: isSmallScreen() ? 150 : 200,
-            }}
-          >
-            <ActivityIndicator size="large" />
-          </View>
-        )}
+        {!isVideoLoaded &&
+          activeIndex === 0 && (
+            <View
+              style={{
+                position: 'absolute',
+                right: SCREEN_WIDTH / 2.5,
+                top: resizeVertical(150, 179, 206, 220, 300, 390),
+              }}
+            >
+              <ActivityIndicator size="large" />
+            </View>
+          )}
         {item.welcome && (
           <View
             style={{
@@ -55,7 +56,7 @@ class VideoCard extends React.Component {
               justifyContent: 'space-around',
               backgroundColor: '#eee',
               borderRadius: 25,
-              marginTop: isSmallScreen() ? 20 : 60,
+              marginTop: resizeVertical(45, 60, 60, 100, 90),
               marginRight: 30,
               marginLeft: 30,
               padding: 8,
@@ -84,7 +85,7 @@ class VideoCard extends React.Component {
           <MapView
             style={{
               alignSelf: 'stretch',
-              height: isSmallScreen() ? 140 : 235,
+              height: resizeVertical(140, 181, 235, 290, 280, 431),
               borderWidth: 1,
               borderColor: '#eee',
             }}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Header, Icon } from 'react-native-elements';
 import { updatePhotoViewerAlbum, clearAlbumData } from '../actions';
 import { Image } from 'react-native';
-import { isSmallScreen } from '../utils/isSmallScreen';
+import { resizeVertical } from '../utils/resize';
 
 class TopNav extends React.Component {
   render() {
@@ -28,7 +28,10 @@ class TopNav extends React.Component {
               color="aqua"
               type="ionicon"
               size={35}
-              containerStyle={{ marginTop: isSmallScreen() ? 10 : 24, width: 28 }}
+              containerStyle={{
+                marginTop: resizeVertical(9, 12, 22, 27, 20, 16),
+                width: 28,
+              }}
               onPress={() => {
                 updatePhotoViewerAlbum('');
                 clearAlbumData();
@@ -37,7 +40,7 @@ class TopNav extends React.Component {
           ) : null
         }
         outerContainerStyles={{
-          height: isSmallScreen() ? 68 : 80,
+          height: resizeVertical(68, 70, 80, 88, 80),
           backgroundColor: '#333',
           borderBottomColor: '#777',
           paddingBottom: 7,

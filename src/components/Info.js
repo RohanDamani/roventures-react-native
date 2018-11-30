@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { styles } from '../stylesheet';
 import { MapView } from 'expo';
+import { resizeVertical } from '../utils/resize';
 
 class Info extends React.Component {
   render() {
@@ -18,7 +19,13 @@ class Info extends React.Component {
             borderBottomColor: '#ddd',
           }}
         >
-          <Text style={{ fontSize: 20 }}>Last Seen Around Here</Text>
+          <Text
+            style={{
+              fontSize: resizeVertical(26, 30, 32, 32, 36, 46,)
+            }}
+          >
+            Last Seen Here
+          </Text>
         </View>
         <MapView
           style={{ flex: 1 }}

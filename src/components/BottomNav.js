@@ -5,8 +5,7 @@ import BottomNavigation, {
   FullTab,
 } from 'react-native-material-bottom-navigation';
 import { updateBottomNavActiveTab } from '../actions/index';
-import {isSmallScreen} from "../utils/isSmallScreen";
-import { styles } from '../stylesheet';
+import { resizeVertical } from '../utils/resize';
 
 class BottomNav extends Component {
   tabs = [
@@ -36,8 +35,6 @@ class BottomNav extends Component {
     },
   ];
 
-  ViewPropsStyle = { height: isSmallScreen() ? 60 : 78, paddingBottom: isSmallScreen() ? 5 : 18 };
-
   renderIcon = icon => ({ isActive }) => (
     <Icon name={icon} type="font-awesome" color="#517fa4" />
   );
@@ -56,15 +53,18 @@ class BottomNav extends Component {
 
   render() {
     return (
-        <BottomNavigation
-          activeTab={this.props.bottomNavActiveTab}
-          onTabPress={newTab => this.props.updateBottomNavActiveTab(newTab.key)}
-          renderTab={this.renderTab}
-          tabs={this.tabs}
-          style={this.ViewPropsStyle}
-          useLayoutAnimation={true}
-        />
-    )
+      <BottomNavigation
+        activeTab={this.props.bottomNavActiveTab}
+        onTabPress={newTab => this.props.updateBottomNavActiveTab(newTab.key)}
+        renderTab={this.renderTab}
+        tabs={this.tabs}
+        style={{
+          height: resizeVertical(60, 67, 78, 85, 80),
+          paddingBottom: resizeVertical(5, 4, 18, 22, 15),
+        }}
+        useLayoutAnimation={true}
+      />
+    );
   }
 }
 
