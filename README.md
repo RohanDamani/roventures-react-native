@@ -1,3 +1,3 @@
-## roventures-react-native
+## Roventures App
 
-This is an iOS app that streams my personal photo and videos from AWS. 
+This is an iOS app, build with React-Native that streams my personal photos and videos from AWS. 
