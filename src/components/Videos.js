@@ -10,7 +10,7 @@ class Videos extends React.Component {
       id: 0,
       text: 'Welcome',
       uri:
-        'https://s3-us-west-1.amazonaws.com/roventures-videos-hls/Welcome/welcome.m3u8',
+        'https://roventures-videos-hls.s3-us-west-1.amazonaws.com/Welcome1/welcome1.m3u8',
       welcome: true,
     },
 
@@ -34,13 +34,13 @@ class Videos extends React.Component {
     },
     {
       id: 3,
-      text: 'BVI Boat Tour',
+      text: 'India',
       uri:
-        'https://s3-us-west-1.amazonaws.com/roventures-videos-hls/BVIBoatTour/BVIBoatTour.m3u8',
+        'https://roventures-videos-hls.s3-us-west-1.amazonaws.com/India/india.m3u8',
       image:
-        'https://s3.amazonaws.com/roventures-thumbnails/Thumbnails/BVIThumb.jpg',
-      latitude: 18.4207,
-      longitude: -64.64,
+        'http://photos.roventures.tv/Agra/IMG_4435.jpg',
+      latitude: 20.5937,
+      longitude: 78.9629,
     },
   ];
 
